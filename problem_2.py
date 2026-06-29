@@ -46,7 +46,35 @@ def encode(filepath):
         "fair": "exceedingly generous",
     }
     # write your code below this line
-
+    swaps = {
+        "dull": "a few sandwiches short of a picnic",
+        "failing": "a temporarily-embarrassed honors student",
+        "effort": "elbow grease",
+        "excellent": "better-than-anticipated",
+        "strict": "a bit more demanding than one might otherwise have anticipated",
+        "fair": "exceedingly generous",
+    }
+    try:
+        with open(filepath, 'r') as file:
+            content = file.read()
+        
+        original_content = content
+        replaced = False
+        
+        for word, replacement in swaps.items():
+            if word in content:
+                content = content.replace(word, replacement)
+                replaced = True
+        
+        if replaced:
+            with open(filepath, 'w') as file:
+                file.write(content)
+            return True
+        else:
+            return False
+            
+    except Exception:
+        return False
 
 # -------------------------------------- #
 # Do not modify the code below this line #

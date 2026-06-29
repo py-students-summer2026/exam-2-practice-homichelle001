@@ -25,6 +25,51 @@ def get_valid_day():
     :returns: The day the user entered, as an integer.  I.e., 1 for Monday, 2 for Tuesday, 3 for Wednesday etc.
     """
     # write your code below this line
+    day_mapping = {
+        'monday': 1,
+        'tuesday': 2,
+        'wednesday': 3,
+        'thursday': 4,
+        'friday': 5,
+        'saturday': 6,
+        'sunday': 7,
+        'mon': 1,
+        'tues': 2,
+        'wed': 3,
+        'weds': 3,
+        'thurs': 4,
+        'fri': 5,
+        'sat': 6,
+        'sun': 7
+    }
+    
+    while True:
+        try:
+            user_input = input("Enter the day of the week: ").strip()
+            
+            try:
+                day_num = int(user_input)
+                if 1 <= day_num <= 7:
+                    return day_num
+                else:
+                    print("Invalid number!")
+                    continue
+            except ValueError:
+                if user_input.isalpha():
+                    day_lower = user_input.lower()
+                    if day_lower in day_mapping:
+                        return day_mapping[day_lower]
+                    else:
+                        print("Invalid day!")
+                        continue
+                else:
+                    print("Huh?")
+                    continue
+                    
+        except Exception:
+            print("Huh?")
+            continue
+
 
 
 # -------------------------------------- #
@@ -32,3 +77,5 @@ def get_valid_day():
 if __name__ == "__main__":
     # call the function if this file is being run directly
     get_valid_day()
+
+    
